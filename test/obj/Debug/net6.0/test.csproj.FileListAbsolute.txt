@@ -1,0 +1,15 @@
+/home/mahar/Desktop/Mahar/test-multi-thread/test/bin/Debug/net6.0/test
+/home/mahar/Desktop/Mahar/test-multi-thread/test/bin/Debug/net6.0/test.deps.json
+/home/mahar/Desktop/Mahar/test-multi-thread/test/bin/Debug/net6.0/test.runtimeconfig.json
+/home/mahar/Desktop/Mahar/test-multi-thread/test/bin/Debug/net6.0/test.dll
+/home/mahar/Desktop/Mahar/test-multi-thread/test/bin/Debug/net6.0/ref/test.dll
+/home/mahar/Desktop/Mahar/test-multi-thread/test/bin/Debug/net6.0/test.pdb
+/home/mahar/Desktop/Mahar/test-multi-thread/test/obj/Debug/net6.0/test.csproj.AssemblyReference.cache
+/home/mahar/Desktop/Mahar/test-multi-thread/test/obj/Debug/net6.0/test.GeneratedMSBuildEditorConfig.editorconfig
+/home/mahar/Desktop/Mahar/test-multi-thread/test/obj/Debug/net6.0/test.AssemblyInfoInputs.cache
+/home/mahar/Desktop/Mahar/test-multi-thread/test/obj/Debug/net6.0/test.AssemblyInfo.cs
+/home/mahar/Desktop/Mahar/test-multi-thread/test/obj/Debug/net6.0/test.csproj.CoreCompileInputs.cache
+/home/mahar/Desktop/Mahar/test-multi-thread/test/obj/Debug/net6.0/test.dll
+/home/mahar/Desktop/Mahar/test-multi-thread/test/obj/Debug/net6.0/ref/test.dll
+/home/mahar/Desktop/Mahar/test-multi-thread/test/obj/Debug/net6.0/test.pdb
+/home/mahar/Desktop/Mahar/test-multi-thread/test/obj/Debug/net6.0/test.genruntimeconfig.cache
