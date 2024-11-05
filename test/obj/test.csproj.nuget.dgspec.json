@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/mahar/Desktop/Mahar/test-multi-thread/test/test.csproj": {}
+    "/home/mahar/Desktop/Mahar/concurrency-test-for-transcoding/test/test.csproj": {}
   },
   "projects": {
-    "/home/mahar/Desktop/Mahar/test-multi-thread/test/test.csproj": {
+    "/home/mahar/Desktop/Mahar/concurrency-test-for-transcoding/test/test.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/mahar/Desktop/Mahar/test-multi-thread/test/test.csproj",
+        "projectUniqueName": "/home/mahar/Desktop/Mahar/concurrency-test-for-transcoding/test/test.csproj",
         "projectName": "test",
-        "projectPath": "/home/mahar/Desktop/Mahar/test-multi-thread/test/test.csproj",
+        "projectPath": "/home/mahar/Desktop/Mahar/concurrency-test-for-transcoding/test/test.csproj",
         "packagesPath": "/home/mahar/.nuget/packages/",
-        "outputPath": "/home/mahar/Desktop/Mahar/test-multi-thread/test/obj/",
+        "outputPath": "/home/mahar/Desktop/Mahar/concurrency-test-for-transcoding/test/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/mahar/.nuget/NuGet/NuGet.Config"
