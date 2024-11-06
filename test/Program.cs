@@ -10,96 +10,111 @@ class Program
 
     public static async Task Main(string[] args)
     {
-       ArrayList changesLog = new ArrayList();
+            ArrayList changesLog = new ArrayList();
 
-        MediaItem previousItem = null;
+            // MediaItem previousItem = null;
 
-        var cancellationTokenSource = new CancellationTokenSource();
+            var cancellationTokenSource = new CancellationTokenSource();
 
-        Task processorTask = Task.Run(() => ProcessQueue(cancellationTokenSource.Token));
+            Task processorTask = Task.Run(() => ProcessQueue(cancellationTokenSource.Token));
 
-        List<MediaItem> dummyData = GenerateDummyData(2);
+            List<MediaItem> dummyData = GenerateDummyData(2);
 
-        Task foreachTask = Task.Run(() =>
-        {
-            foreach (var item in dummyData)
+
+            Task foreachTask = Task.Run(() =>
             {
-                if (queuedItems.Add(item.Id))
+                foreach (var item in dummyData)
                 {
-                    taskQueue.Enqueue(item);
+                    if (queuedItems.Add(item.Id))
+                    {
+                        taskQueue.Enqueue(item);
+                    }
                 }
-            }
-        });
+            });
 
 
-        Task whileTask = Task.Run(async () =>
-        {
-            Console.WriteLine("hello while");
-            
 
-            while (!processingComplete && !taskQueue.IsEmpty)
+
+            Task whileTask = Task.Run(async () =>
             {
-                List<MediaItem> processingDataWhileTranscoding = GenerateDummyData(1);
-
-                Console.WriteLine("dummy while");
-
-                MediaItem newItem = processingDataWhileTranscoding.First();
-
-                if (!dummyData.Any(pdata => pdata.Id == newItem.Id) && queuedItems.Add(newItem.Id))
+                Console.WriteLine("hello while");
+                
+                while (!processingComplete && !taskQueue.IsEmpty)
                 {
-                    Console.WriteLine("Ma tu buu");
-                    taskQueue.Enqueue(newItem);
+                    List<MediaItem> processingDataWhileTranscoding = GenerateDummyData(1);
+
+                    Console.WriteLine("dummy while");
+
+                    MediaItem newItem = processingDataWhileTranscoding.First();
+
+                    if (!dummyData.Any(pdata => pdata.Id == newItem.Id) && queuedItems.Add(newItem.Id))
+                    {
+                        Console.WriteLine("Ma tu buu");
+                        taskQueue.Enqueue(newItem);
+                    }
+
+                    await Task.Delay(5000);  
                 }
-
-                await Task.Delay(5000);  
-            }
-        });
+            });
 
 
-        await foreachTask;
+            await foreachTask;
 
-        await processorTask;  
+            await processorTask;  
 
-        processingComplete = true;
+            processingComplete = true;
 
-        await whileTask;
+            await whileTask;
 
-        Console.WriteLine("Both foreach and while loops have finished, and processing is complete.");
+            Console.WriteLine("Both foreach and while loops have finished, and processing is complete.");
 
     }
 
-    private static async Task ProcessQueue(CancellationToken token)
-    {
-        while (!token.IsCancellationRequested || !taskQueue.IsEmpty)
+        private static async Task ProcessQueue(CancellationToken token)
         {
-            if (taskQueue.TryDequeue(out MediaItem item))
+            // List to hold all processing tasks
+            List<Task> processingTasks = new List<Task>();
+
+            while (!token.IsCancellationRequested || !taskQueue.IsEmpty)
             {
-                await ProcessItem(item);
-                queuedItems.Remove(item.Id);
+                if (taskQueue.TryDequeue(out MediaItem item))
+                {
+                    // Start processing item in a new task and add it to the list
+                    var task = Task.Run(async () =>
+                    {
+                        await ProcessItem(item);
+                        Console.WriteLine($"Processed and removed item {item.Id}");
+                        queuedItems.Remove(item.Id);
+                    });
+
+                    processingTasks.Add(task);
+                }
+                else
+                {
+                    await Task.Delay(500); 
+                }
             }
-            else
-            {
-                await Task.Delay(500); 
-            }
+
+            // Wait for all processing tasks to complete
+            await Task.WhenAll(processingTasks);
+            Console.WriteLine("Processing complete. All items have been processed.");
         }
-        Console.WriteLine("Processing complete. All items have been processed.");
-    }
 
 
     private static async Task ProcessItem(MediaItem item)
     {
-        Console.WriteLine($"Processing item with Id: {item.Id}");
+            Console.WriteLine($"Processing item with Id: {item.Id}");
 
-        string result = await test();
-        Console.WriteLine(result);
+            string result = await test();
+            Console.WriteLine(result);
 
-        bool b = await boolean();
-        Console.WriteLine(b);
+            bool b = await boolean();
+            Console.WriteLine(b);
 
-        int i = await integer();
-        Console.WriteLine(i);
+            int i = await integer();
+            Console.WriteLine(i);
 
-        Console.WriteLine($"Completed processing for item Id: {item.Id}");
+            Console.WriteLine($"Completed processing for item Id: {item.Id}");
     }
 
     private static async Task<string> test()
